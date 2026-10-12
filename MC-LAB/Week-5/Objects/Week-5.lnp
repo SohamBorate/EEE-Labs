@@ -1,0 +1,4 @@
+".\Objects\src-1.obj" 
+TO ".\Objects\Week-5" 
+PRINT(".\Listings\Week-5.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

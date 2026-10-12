@@ -1,0 +1,161 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 10/06/2026 19:41:00 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\main.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE main.asm SET(SMALL) DEBUG PRINT(.\Listings\main.lst) OBJECT(.\Objects\m
+                      ain.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+0000 02000E            2     LJMP MAIN
+000B                   3     ORG 000BH
+000B 02004E            4     LJMP TFZERO
+                       5     
+000E                   6     MAIN:
+                       7     
+                       8     
+000E 7530FE            9     MOV 30H, #0FEH  
+0011 753133           10     MOV 31H, #33H
+0014 7532C0           11     MOV 32H, #0C0H  
+0017 7533A4           12     MOV 33H, #0A4H
+001A 7534F9           13     MOV 34H, #0F9H  
+001D 753529           14     MOV 35H, #29H
+0020 753600           15     MOV 36H, #00H  
+0023 753700           16     MOV 37H, #00H
+0026 753800           17     MOV 38H, #00H  
+0029 753900           18     MOV 39H, #00H
+002C 753A00           19     MOV 3AH, #00H  
+002F 753B07           20     MOV 3BH, #07  
+                      21     
+0032 C2B4             22     CLR P3.4  
+0034 C200             23     CLR 00H  
+0036 C201             24     CLR 01H  
+0038 C202             25     CLR 02H  
+                      26     
+                      27     
+003A 758901           28     MOV TMOD, #01H  
+003D D2A9             29     SETB IE.1  
+003F D2AF             30     SETB IE.7  
+0041 85308C           31     MOV TH0, 30H
+0044 85318A           32     MOV TL0, 31H
+0047 D2B4             33     SETB P3.4
+0049 D28C             34     SETB TR0  
+                      35     
+004B 020087           36     LJMP LOOP
+                      37     
+                      38     
+                      39     
+                      40     
+                      41     
+004E 20000B           42     TFZERO: JB 00H, TFZEROLOW
+0051 85368C           43             MOV TH0, 36H  
+0054 85378A           44             MOV TL0, 37H
+0057 D200             45             SETB 00H
+0059 D2B4             46             SETB P3.4
+005B 32               47             RETI
+005C 20010B           48             TFZEROLOW: JB 01H, TFZEROIDLE
+005F 85388C           49             MOV TH0, 38H  
+0062 85398A           50             MOV TL0, 39H
+0065 D201             51             SETB 01H
+0067 C2B4             52             CLR P3.4
+0069 32               53             RETI
+006A 20020B           54             TFZEROIDLE: JB 02H, TFZEROEND
+006D 85328C           55             MOV TH0, 32H  
+0070 85338A           56             MOV TL0, 33H
+0073 D202             57             SETB 02H
+A51 MACRO ASSEMBLER  MAIN                                                                 10/06/2026 19:41:00 PAGE     2
+
+0075 C2B4             58             CLR P3.4
+0077 32               59             RETI
+0078                  60             TFZEROEND:
+0078 85308C           61             MOV TH0, 30H  
+007B 85318A           62             MOV TL0, 31H
+007E C200             63             CLR 00H  
+0080 C201             64             CLR 01H  
+0082 C202             65             CLR 02H  
+0084 D2B4             66             SETB P3.4
+0086 32               67             RETI
+                      68     
+0087 118D             69     LOOP: ACALL SAMPLEADC
+0089 118E             70     ACALL CALCULATEDELAY
+008B 80FA             71     SJMP LOOP
+                      72     
+008D 22               73     SAMPLEADC: RET
+                      74     
+                      75     
+                      76     
+                      77     
+                      78     
+008E E53A             79     CALCULATEDELAY: MOV A, 3AH  
+0090 853BF0           80     MOV B, 3BH  
+0093 C3               81     CLR C
+0094 A4               82     MUL AB
+0095 F537             83     MOV 37H, A  
+0097 85F036           84     MOV 36H, B  
+                      85     
+                      86     
+009A E537             87     MOV A, 37H  
+009C F4               88     CPL A  
+009D 2401             89     ADD A, #01H  
+009F F537             90     MOV 37H, A
+                      91     
+00A1 E536             92     MOV A, 36H  
+00A3 F4               93     CPL A  
+00A4 3400             94     ADDC A, #00H  
+00A6 F536             95     MOV 36H, A
+                      96     
+                      97     
+                      98     
+00A8 74FF             99     MOV A, #0FFH
+00AA C3              100     CLR C
+00AB 953A            101     SUBB A, 3AH
+00AD 853BF0          102     MOV B, 3BH  
+00B0 C3              103     CLR C
+00B1 A4              104     MUL AB
+00B2 F539            105     MOV 39H, A  
+00B4 85F038          106     MOV 38H, B  
+                     107     
+00B7 E539            108     MOV A, 39H  
+00B9 F4              109     CPL A  
+00BA 2401            110     ADD A, #01H  
+00BC F539            111     MOV 39H, A
+                     112     
+00BE E538            113     MOV A, 38H  
+00C0 F4              114     CPL A  
+00C1 3400            115     ADDC A, #00H  
+00C3 F538            116     MOV 38H, A
+                     117     
+00C5 22              118     RET
+                     119     
+                     120     END
+A51 MACRO ASSEMBLER  MAIN                                                                 10/06/2026 19:41:00 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CALCULATEDELAY . .  C ADDR   008EH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LOOP . . . . . . .  C ADDR   0087H   A   
+MAIN . . . . . . .  C ADDR   000EH   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+SAMPLEADC. . . . .  C ADDR   008DH   A   
+TFZERO . . . . . .  C ADDR   004EH   A   
+TFZEROEND. . . . .  C ADDR   0078H   A   
+TFZEROIDLE . . . .  C ADDR   006AH   A   
+TFZEROLOW. . . . .  C ADDR   005CH   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,12 @@
+ORG 0000H
+
+BEGIN: MOV A, R2
+MOV R4, A
+
+MOV A, R3
+MOV R2, A
+
+MOV A, R4
+MOV R3, A
+
+END

@@ -1,0 +1,69 @@
+A51 MACRO ASSEMBLER  SRC_5                                                                09/01/2026 00:43:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-5.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-5.asm SET(SMALL) DEBUG PRINT(.\Listings\src-5.lst) OBJECT(.\Objects
+                      \src-5.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 A850              3     START: MOV R0, 50H  
+0002 755101            4     MOV 51H, #1  
+0005 7951              5     MOV R1, #51H  
+0007 7A0A              6     MOV R2, #10  
+                       7     
+0009 E8                8     BACK: MOV A, R0  
+000A 87F0              9     MOV B, @R1  
+000C A4               10     MUL AB
+000D 85F052           11     MOV 52H, B  
+0010 F553             12     MOV 53H, A  
+0012 111E             13     ACALL DELAY  
+0014 DA02             14     DJNZ R2, NEXT
+                      15     
+0016 8013             16     SJMP TERMINATE
+                      17     
+0018 07               18     NEXT: INC @R1  
+0019 E7               19     MOV A, @R1
+001A D4               20     DA A
+001B F7               21     MOV @R1, A
+001C 80EB             22     SJMP BACK
+                      23     
+                      24     
+                      25     
+001E 7F18             26     DELAY: MOV R7, #24  
+0020 7EE1             27     LOOP1: MOV R6, #225  
+0022 7DFF             28     LOOP2: MOV R5, #255  
+0024 DDFE             29     LOOP3: DJNZ R5, LOOP3
+0026 DEFA             30     DJNZ R6, LOOP2
+0028 DFF6             31     DJNZ R7, LOOP1
+002A 22               32     RET
+                      33     
+002B                  34     TERMINATE:
+                      35     
+                      36     END
+A51 MACRO ASSEMBLER  SRC_5                                                                09/01/2026 00:43:04 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   0009H   A   
+DELAY. . . . . . .  C ADDR   001EH   A   
+LOOP1. . . . . . .  C ADDR   0020H   A   
+LOOP2. . . . . . .  C ADDR   0022H   A   
+LOOP3. . . . . . .  C ADDR   0024H   A   
+NEXT . . . . . . .  C ADDR   0018H   A   
+START. . . . . . .  C ADDR   0000H   A   
+TERMINATE. . . . .  C ADDR   002BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

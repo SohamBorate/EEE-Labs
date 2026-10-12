@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  SRC_4                                                                08/18/2026 00:39:02 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-4.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-4.asm SET(SMALL) DEBUG PRINT(.\Listings\src-4.lst) OBJECT(.\Objects
+                      \src-4.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 8530F0            3     MOV B, 30H  
+0003 902001            4     MOV DPTR, #2001H  
+0006 E0                5     MOVX A, @DPTR  
+0007 A4                6     MUL AB
+0008 F552              7     MOV 52H, A  
+000A A8F0              8     MOV R0, B  
+000C 8530F0            9     MOV B, 30H  
+                      10     
+000F 902000           11     MOV DPTR, #2000H  
+0012 E0               12     MOVX A, @DPTR  
+0013 A4               13     MUL AB
+0014 28               14     ADD A, R0  
+0015 5002             15     JNC NEXT  
+0017 05F0             16     INC B  
+                      17     
+0019 F551             18     NEXT: MOV 51H, A
+001B 85F050           19     MOV 50H, B  
+                      20     
+                      21     END
+A51 MACRO ASSEMBLER  SRC_4                                                                08/18/2026 00:39:02 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+NEXT . . . . . . .  C ADDR   0019H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

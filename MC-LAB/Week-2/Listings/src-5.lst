@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  SRC_5                                                                08/20/2026 21:40:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-5.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-5.asm SET(SMALL) DEBUG PRINT(.\Listings\src-5.lst) OBJECT(.\Objects
+                      \src-5.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7830              3     BEGIN: MOV R0, #30H  
+0002 7A0B              4     MOV R2, #11  
+0004 7400              5     MOV A, #00H  
+                       6     
+0006 26                7     BACK: ADD A, @R0  
+0007 D4                8     DA A
+0008 5007              9     JNC AFTERCARRY
+000A C540             10     XCH A, 40H  
+000C 2401             11     ADD A, #01H
+000E D4               12     DA A
+000F C540             13     XCH A, 40H
+                      14     
+0011 08               15     AFTERCARRY: INC R0  
+0012 DAF2             16     DJNZ R2, BACK
+                      17     
+0014 F541             18     MOV 41H, A  
+                      19     
+                      20     END
+A51 MACRO ASSEMBLER  SRC_5                                                                08/20/2026 21:40:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AFTERCARRY . . . .  C ADDR   0011H   A   
+BACK . . . . . . .  C ADDR   0006H   A   
+BEGIN. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

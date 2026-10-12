@@ -1,0 +1,4 @@
+".\Objects\main2.obj" 
+TO ".\Objects\Servo-Control" 
+PRINT(".\Listings\Servo-Control.m51") RAMSIZE(256) 
+CODE( 0X0000-0X1FFF )

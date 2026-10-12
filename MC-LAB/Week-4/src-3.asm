@@ -1,0 +1,41 @@
+ORG 0000H
+
+START: MOV R3, #50H // from
+MOV R4, #30H // to
+
+MOV R0, 03H
+
+BACK: MOV A, R4
+MOV P0, R0
+ACALL DELAY
+CLR C
+SUBB A, R0
+JC NEXT
+SJMP SKIPDELAY
+
+NEXT: DEC R0
+// check if lower nibble is 0FH
+MOV A, R0
+ANL A, #0FH
+CLR C
+SUBB A, #0FH
+JC BACK
+
+MOV A, R0
+SUBB A, #06H
+MOV R0, A
+SJMP BACK
+
+SJMP SKIPDELAY // 1 second
+
+DELAY: MOV R7, #8 // down-counter, after each tick, R7 decreases
+LOOP1: MOV R6, #225 // prescalar 2
+LOOP2: MOV R5, #255 // prescalar 1
+LOOP3: DJNZ R5, LOOP3
+DJNZ R6, LOOP2
+DJNZ R7, LOOP1
+RET
+
+SKIPDELAY:
+
+END

@@ -1,0 +1,94 @@
+A51 MACRO ASSEMBLER  SRC_3                                                                09/08/2026 13:13:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-3.asm SET(SMALL) DEBUG PRINT(.\Listings\src-3.lst) OBJECT(.\Objects
+                      \src-3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                 ORG     0000H
+0000 020030            2                 LJMP    MAIN
+                       3     
+0003                   4                 ORG     0003H          ; External Interrupt 0 vector
+0003 020047            5                 LJMP    INT0_ISR
+                       6     
+000B                   7                 ORG     000BH          ; Timer 0 overflow vector
+000B 02004C            8                 LJMP    TIMER0_ISR
+                       9     
+0013                  10                 ORG     0013H          ; External Interrupt 1 vector
+0013 02004F           11                 LJMP    INT1_ISR
+                      12     
+001B                  13                 ORG     001BH          ; Timer 1 overflow vector
+001B 020054           14                 LJMP    TIMER1_ISR
+                      15     
+0030                  16                 ORG     0030H
+0030 758922           17     MAIN:       MOV     TMOD, #22H     ; Timer0 = Mode2 (auto-reload), Timer1 = Mode2
+0033 758C83           18                 MOV     TH0,  #83H     ; 256-131=125 -> 125 us reload  (4 kHz half-period)
+0036 758DC1           19                 MOV     TH1,  #0C1H    ; 256-193=63  -> ~63 us reload (8 kHz half-period, appro
+                             x)
+0039 C296             20                 CLR     P1.6
+                      21     
+003B C288             22                 CLR     IT0            ; INT0 = level-triggered
+003D C28A             23                 CLR     IT1            ; INT1 = level-triggered
+                      24     
+003F 75B80A           25                 MOV     IP,   #0AH     ; PX1=1, PT1=1 (high priority group)
+                      26                                         ; PX0=0, PT0=0 (low priority group)
+0042 75A88F           27                 MOV     IE,   #8FH     ; EA=1, EX0=1, ET0=1, EX1=1, ET1=1
+                      28     
+0045 80FE             29     HERE:       SJMP    HERE           ; wait here — everything else is interrupt-driven
+                      30     
+                      31     ;--------------------------------------------------
+0047                  32     INT0_ISR:                          ; entered while INT0 pin is held low
+0047 C28E             33                 CLR     TR1            ; make sure the 8 kHz timer is stopped
+0049 D28C             34                 SETB    TR0            ; start/keep the 4 kHz timer running
+004B 32               35                 RETI
+                      36     
+                      37     ;--------------------------------------------------
+004C                  38     TIMER0_ISR:                        ; fires every 125 us while TR0=1
+004C B296             39                 CPL     P1.6           ; toggle -> 250 us period -> 4 kHz
+004E 32               40                 RETI                   ; TH0 auto-reloads into TL0, no manual reload needed
+                      41     
+                      42     ;--------------------------------------------------
+004F                  43     INT1_ISR:                          ; entered while INT1 pin is held low
+004F C28C             44                 CLR     TR0            ; stop the 4 kHz timer
+0051 D28E             45                 SETB    TR1            ; start the 8 kHz timer
+0053 32               46                 RETI
+                      47     
+                      48     ;--------------------------------------------------
+0054                  49     TIMER1_ISR:                        ; fires every ~63 us while TR1=1
+0054 B296             50                 CPL     P1.6           ; toggle -> ~126 us period -> ~7.94 kHz
+0056 32               51                 RETI
+                      52     
+                      53                 END
+A51 MACRO ASSEMBLER  SRC_3                                                                09/08/2026 13:13:40 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   0045H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+INT0_ISR . . . . .  C ADDR   0047H   A   
+INT1_ISR . . . . .  C ADDR   004FH   A   
+IP . . . . . . . .  D ADDR   00B8H   A   
+IT0. . . . . . . .  B ADDR   0088H.0 A   
+IT1. . . . . . . .  B ADDR   0088H.2 A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TIMER0_ISR . . . .  C ADDR   004CH   A   
+TIMER1_ISR . . . .  C ADDR   0054H   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

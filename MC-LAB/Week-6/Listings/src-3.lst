@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  SRC_3                                                                09/21/2026 21:30:14 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-3.asm SET(SMALL) DEBUG PRINT(.\Listings\src-3.lst) OBJECT(.\Objects
+                      \src-3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 759000            3     REPEAT: MOV P1, #00H  
+0003 1118              4     ACALL DELAY
+0005 759066            5     MOV P1, #66H  
+0008 1118              6     ACALL DELAY
+000A 7590B2            7     MOV P1, #0B2H  
+000D 1118              8     ACALL DELAY
+000F 1118              9     ACALL DELAY
+0011 7590FF           10     MOV P1, #0FFH  
+0014 1118             11     ACALL DELAY
+0016 80E8             12     SJMP REPEAT
+                      13     
+                      14     
+0018 7FE4             15     DELAY: MOV R7, #228
+001A DFFE             16     LOOPDELAY: DJNZ R7, LOOPDELAY
+001C 22               17     RET
+                      18     
+                      19     END
+A51 MACRO ASSEMBLER  SRC_3                                                                09/21/2026 21:30:14 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0018H   A   
+LOOPDELAY. . . . .  C ADDR   001AH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REPEAT . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

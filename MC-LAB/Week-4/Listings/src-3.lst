@@ -1,0 +1,74 @@
+A51 MACRO ASSEMBLER  SRC_3                                                                08/31/2026 22:37:48 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-3.asm SET(SMALL) DEBUG PRINT(.\Listings\src-3.lst) OBJECT(.\Objects
+                      \src-3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7B50              3     START: MOV R3, #50H  
+0002 7C30              4     MOV R4, #30H  
+                       5     
+0004 A803              6     MOV R0, 03H
+                       7     
+0006 EC                8     BACK: MOV A, R4
+0007 8880              9     MOV P0, R0
+0009 1122             10     ACALL DELAY
+000B C3               11     CLR C
+000C 98               12     SUBB A, R0
+000D 4002             13     JC NEXT
+000F 801E             14     SJMP SKIPDELAY
+                      15     
+0011 18               16     NEXT: DEC R0
+                      17     
+0012 E8               18     MOV A, R0
+0013 540F             19     ANL A, #0FH
+0015 C3               20     CLR C
+0016 940F             21     SUBB A, #0FH
+0018 40EC             22     JC BACK
+                      23     
+001A E8               24     MOV A, R0
+001B 9406             25     SUBB A, #06H
+001D F8               26     MOV R0, A
+001E 80E6             27     SJMP BACK
+                      28     
+0020 800D             29     SJMP SKIPDELAY  
+                      30     
+0022 7F08             31     DELAY: MOV R7, #8  
+0024 7EE1             32     LOOP1: MOV R6, #225  
+0026 7DFF             33     LOOP2: MOV R5, #255  
+0028 DDFE             34     LOOP3: DJNZ R5, LOOP3
+002A DEFA             35     DJNZ R6, LOOP2
+002C DFF6             36     DJNZ R7, LOOP1
+002E 22               37     RET
+                      38     
+002F                  39     SKIPDELAY:
+                      40     
+                      41     END
+A51 MACRO ASSEMBLER  SRC_3                                                                08/31/2026 22:37:48 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0006H   A   
+DELAY. . . . . . .  C ADDR   0022H   A   
+LOOP1. . . . . . .  C ADDR   0024H   A   
+LOOP2. . . . . . .  C ADDR   0026H   A   
+LOOP3. . . . . . .  C ADDR   0028H   A   
+NEXT . . . . . . .  C ADDR   0011H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+SKIPDELAY. . . . .  C ADDR   002FH   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

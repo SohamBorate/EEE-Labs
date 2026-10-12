@@ -1,0 +1,54 @@
+A51 MACRO ASSEMBLER  SRC_2                                                                08/31/2026 21:19:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-2.asm SET(SMALL) DEBUG PRINT(.\Listings\src-2.lst) OBJECT(.\Objects
+                      \src-2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7A05              3     START: MOV R2, #05  
+0002 1A                4     DEC R2  
+                       5     
+0003 7860              6     LOOP: MOV R0, #60H  
+0005 7961              7     MOV R1, #61H  
+0007 8A03              8     MOV 03H, R2  
+                       9     
+0009 E6               10     BACK: MOV A, @R0  
+000A C3               11     CLR C
+000B 97               12     SUBB A, @R1
+                      13     
+000C 5003             14     JNC NEXT
+000E E6               15     MOV A, @R0  
+000F C7               16     XCH A, @R1
+0010 F6               17     MOV @R0, A
+                      18     
+0011 08               19     NEXT: INC R0  
+0012 09               20     INC R1
+0013 DBF4             21     DJNZ R3, BACK
+                      22     
+0015 DAEC             23     NEXTLOOP: DJNZ R2, LOOP  
+                      24     
+                      25     END
+A51 MACRO ASSEMBLER  SRC_2                                                                08/31/2026 21:19:29 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0009H   A   
+LOOP . . . . . . .  C ADDR   0003H   A   
+NEXT . . . . . . .  C ADDR   0011H   A   
+NEXTLOOP . . . . .  C ADDR   0015H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

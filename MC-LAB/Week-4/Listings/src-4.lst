@@ -1,0 +1,80 @@
+A51 MACRO ASSEMBLER  SRC_4                                                                09/01/2026 00:23:05 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-4.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-4.asm SET(SMALL) DEBUG PRINT(.\Listings\src-4.lst) OBJECT(.\Objects
+                      \src-4.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 781F              3     START: MOV R0, #1FH  
+0002 7900              4     MOV R1, #00H  
+0004 7A20              5     MOV R2, #20H  
+0006 7B26              6     MOV R3, #26H  
+                       7     
+0008 0B                8     INC R3  
+                       9     
+0009 8890             10     BACK: MOV P1, R0  
+000B 89A0             11     MOV P2, R1  
+000D 1126             12     ACALL DELAY
+                      13     
+000F E9               14     MOV A, R1  
+0010 C3               15     CLR C
+0011 2401             16     ADD A, #01H
+0013 F9               17     MOV R1, A
+0014 5002             18     JNC CHECK
+                      19     
+0016 E8               20     MOV A, R0  
+0017 08               21     INC R0
+                      22     
+0018 E8               23     CHECK: MOV A, R0  
+0019 C3               24     CLR C
+001A 9A               25     SUBB A, R2
+001B 40EC             26     JC BACK
+                      27     
+001D E9               28     MOV A, R1  
+001E C3               29     CLR C
+001F 9B               30     SUBB A, R3
+0020 40E7             31     JC BACK
+0022 800F             32     SJMP SKIPDELAY
+                      33     
+0024 800D             34     SJMP SKIPDELAY  
+                      35     
+0026 7F04             36     DELAY: MOV R7, #4  
+0028 7EE1             37     LOOP1: MOV R6, #225  
+002A 7DFF             38     LOOP2: MOV R5, #255  
+002C DDFE             39     LOOP3: DJNZ R5, LOOP3
+002E DEFA             40     DJNZ R6, LOOP2
+0030 DFF6             41     DJNZ R7, LOOP1
+0032 22               42     RET
+                      43     
+0033                  44     SKIPDELAY:
+                      45     
+                      46     END
+A51 MACRO ASSEMBLER  SRC_4                                                                09/01/2026 00:23:05 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0009H   A   
+CHECK. . . . . . .  C ADDR   0018H   A   
+DELAY. . . . . . .  C ADDR   0026H   A   
+LOOP1. . . . . . .  C ADDR   0028H   A   
+LOOP2. . . . . . .  C ADDR   002AH   A   
+LOOP3. . . . . . .  C ADDR   002CH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SKIPDELAY. . . . .  C ADDR   0033H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  SRC_1                                                                08/31/2026 20:55:56 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-1.asm SET(SMALL) DEBUG PRINT(.\Listings\src-1.lst) OBJECT(.\Objects
+                      \src-1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 AA60              3     START: MOV R2, 60H  
+0002 7861              4     MOV R0, #61H  
+0004 79FF              5     MOV R1, #0FFH  
+                       6     
+0006 E6                7     BACK: MOV A, @R0  
+0007 C3                8     CLR C
+0008 99                9     SUBB A, R1  
+                      10     
+0009 5002             11     JNC NEXT
+000B 8601             12     MOV 01H, @R0
+                      13     
+000D 08               14     NEXT: INC R0  
+000E DAF6             15     DJNZ R2, BACK
+                      16     
+0010 89B0             17     MOV P3, R1  
+                      18     
+                      19     END
+A51 MACRO ASSEMBLER  SRC_1                                                                08/31/2026 20:55:56 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0006H   A   
+NEXT . . . . . . .  C ADDR   000DH   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,118 @@
+A51 MACRO ASSEMBLER  SRC_1                                                                10/05/2026 22:34:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-1.asm SET(SMALL) DEBUG PRINT(.\Listings\src-1.lst) OBJECT(.\Objects
+                      \src-1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  E267                 1     LCDINIT EQU 0E267H
+  E295                 2     LCDCMD EQU 0E295H
+  E2B4                 3     LCDDAT EQU 0E2B4H
+  E39E                 4     LCDSTR EQU 0E39EH
+  03B0                 5     HEX2ASCII EQU 03B0H
+                       6     
+  0090                 7     DAT EQU P1
+  00A0                 8     EOC BIT P2.0
+  0086                 9     OE BIT P0.6
+  0080                10     ADD_A BIT P0.0
+  0081                11     ADD_B BIT P0.1
+  0082                12     ADD_C BIT P0.2
+  0083                13     ADD_D BIT P0.3
+  0085                14     SC_ALE BIT P0.5
+                      15     
+0000                  16     ORG 0000H
+                      17     
+0000 12E267           18     LCALL LCDINIT
+0003 7406             19     MOV A, #06H  
+0005 12E295           20     LCALL LCDCMD
+                      21     
+0008 D280             22     SETB ADD_A
+000A C281             23     CLR ADD_B
+000C D282             24     SETB ADD_C
+000E C283             25     CLR ADD_D
+0010 C286             26     CLR OE
+0012 C2A0             27     CLR EOC
+0014 C285             28     CLR SC_ALE
+                      29     
+0016 111C             30     HERE: ACALL CONVERT
+0018 1130             31     ACALL DISPLAY
+001A 80FA             32     SJMP HERE
+                      33     
+001C D2A0             34     CONVERT: SETB EOC
+001E D285             35     SETB SC_ALE
+0020 00               36     NOP
+0021 C285             37     CLR SC_ALE
+0023 20A0FD           38     WAIT1: JB EOC, WAIT1
+0026 30A0FD           39     WAIT2: JNB EOC, WAIT2
+0029 D286             40     SETB OE
+002B E590             41     MOV A, DAT      
+002D C286             42     CLR OE
+002F 22               43     RET
+                      44     
+0030 F530             45     DISPLAY: MOV 30H, A
+0032 7401             46     MOV A, #01H  
+0034 12E295           47     LCALL LCDCMD
+0037 E530             48     MOV A, 30H
+0039 C4               49     SWAP A  
+003A 540F             50     ANL A, #0FH
+003C 1203B0           51     LCALL HEX2ASCII
+003F 12E2B4           52     LCALL LCDDAT
+0042 E530             53     MOV A,30H
+0044 540F             54     ANL A,#0FH  
+0046 1203B0           55     LCALL HEX2ASCII
+0049 12E2B4           56     LCALL LCDDAT
+004C 7448             57     MOV A,#'H'  
+A51 MACRO ASSEMBLER  SRC_1                                                                10/05/2026 22:34:22 PAGE     2
+
+004E 12E2B4           58     LCALL LCDDAT
+0051 1154             59     ACALL DELAY
+0053 22               60     RET
+                      61     
+0054 7FFF             62     DELAY: MOV R7, #0FFH  
+0056 7EFF             63     D1: MOV R6, #0FFH
+0058 DEFE             64     D2: DJNZ R6,D2
+005A DFFA             65     DJNZ R7, D1
+005C 22               66     RET
+                      67     
+                      68     END
+A51 MACRO ASSEMBLER  SRC_1                                                                10/05/2026 22:34:22 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADD_A. . . . . . .  B ADDR   0080H.0 A   
+ADD_B. . . . . . .  B ADDR   0080H.1 A   
+ADD_C. . . . . . .  B ADDR   0080H.2 A   
+ADD_D. . . . . . .  B ADDR   0080H.3 A   
+CONVERT. . . . . .  C ADDR   001CH   A   
+D1 . . . . . . . .  C ADDR   0056H   A   
+D2 . . . . . . . .  C ADDR   0058H   A   
+DAT. . . . . . . .  D ADDR   0090H   A   
+DELAY. . . . . . .  C ADDR   0054H   A   
+DISPLAY. . . . . .  C ADDR   0030H   A   
+EOC. . . . . . . .  B ADDR   00A0H.0 A   
+HERE . . . . . . .  C ADDR   0016H   A   
+HEX2ASCII. . . . .  N NUMB   03B0H   A   
+LCDCMD . . . . . .  N NUMB   E295H   A   
+LCDDAT . . . . . .  N NUMB   E2B4H   A   
+LCDINIT. . . . . .  N NUMB   E267H   A   
+LCDSTR . . . . . .  N NUMB   E39EH   A   
+OE . . . . . . . .  B ADDR   0080H.6 A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SC_ALE . . . . . .  B ADDR   0080H.5 A   
+WAIT1. . . . . . .  C ADDR   0023H   A   
+WAIT2. . . . . . .  C ADDR   0026H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

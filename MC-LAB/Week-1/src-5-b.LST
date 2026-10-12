@@ -1,0 +1,30 @@
+A51 MACRO ASSEMBLER  SRC_5_B                                                              08/17/2026 20:24:34 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN src-5-b.OBJ
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-5-b.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 EA                3     MOV A, R2
+0001 CB                4     XCH A, R3
+0002 FA                5     MOV R2, A
+                       6     
+                       7     END
+A51 MACRO ASSEMBLER  SRC_5_B                                                              08/17/2026 20:24:34 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

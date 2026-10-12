@@ -1,0 +1,75 @@
+ORG 0000H
+LJMP MAIN
+
+LCD_DATA EQU P1
+RS BIT P2.0
+RW BIT P2.1
+EN BIT P2.2
+
+ORG 0030H
+
+MAIN:   MOV A, #38H // 2 lines and 5x7 matrix
+ACALL CMD
+MOV A, #0CH // display on cursor off
+ACALL CMD
+MOV A, #06H // shift cursor right
+ACALL CMD
+MOV A, #01H // clear display
+ACALL CMD
+
+MOV A, #81H // line 1, position 2 (80H + 1)
+ACALL CMD
+MOV DPTR, #TEXT1
+ACALL PRINT
+
+MOV A, #0C4H // line 2, position 5 (C0H + 4)
+ACALL CMD
+MOV DPTR, #TEXT2
+ACALL PRINT
+
+HERE: SJMP HERE
+
+// print null terminated string at DPTR
+PRINT: CLR A
+MOVC A, @A+DPTR
+JZ DONE
+ACALL DAT
+INC DPTR
+SJMP PRINT
+DONE: RET
+
+// send command byte in A
+CMD: ACALL BUSY
+CLR RS
+CLR RW
+MOV LCD_DATA, A
+SETB EN
+NOP
+CLR EN
+RET
+
+// send data byte in A
+DAT: ACALL BUSY
+SETB RS
+CLR RW
+MOV LCD_DATA, A
+SETB EN
+NOP
+CLR EN
+RET
+
+// checks the busy flag
+BUSY: MOV P1, #0FFH
+SETB RW
+CLR RS
+CLR EN
+NOP
+SETB EN
+WAIT: JB LCD_DATA.7, WAIT
+CLR EN
+RET
+
+TEXT1: DB 'MICROCONTROLLER', 0
+TEXT2: DB 'LAB 2026', 0
+
+END

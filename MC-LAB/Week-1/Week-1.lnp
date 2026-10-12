@@ -1,0 +1,4 @@
+"src-5-b.obj" 
+TO "Week-1" 
+RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

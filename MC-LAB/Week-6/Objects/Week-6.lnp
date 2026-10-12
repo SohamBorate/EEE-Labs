@@ -1,0 +1,5 @@
+".\Objects\src-4.obj" 
+TO ".\Objects\Week-6" 
+PRINT(".\Listings\Week-6.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )
+XDATA( 0X0000-0X06FF )

@@ -1,0 +1,60 @@
+A51 MACRO ASSEMBLER  SRC_6                                                                08/18/2026 13:20:52 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-6.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-6.asm SET(SMALL) DEBUG PRINT(.\Listings\src-6.lst) OBJECT(.\Objects
+                      \src-6.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7850              3     BEGIN: MOV R0, #50H  
+0002 7930              4     MOV R1, #30H  
+0004 7A05              5     MOV R2, #5  
+0006 7B00              6     MOV R3, #00  
+                       7     
+0008 75F004            8     BACK: MOV B, #4H  
+000B E6                9     MOV A, @R0  
+000C 84               10     DIV AB
+                      11     
+                      12     
+000D E6               13     MOV A, @R0
+000E F7               14     MOV @R1, A
+000F 09               15     INC R1
+0010 0B               16     INC R3
+                      17     
+0011 E5F0             18     MOV A, B  
+                      19     
+                      20     
+0013 6006             21     JZ NEXT
+0015 19               22     DEC R1
+0016 1B               23     DEC R3
+0017 7600             24     MOV @R0, #00H
+0019 7700             25     MOV @R1, #00H
+                      26     
+001B 08               27     NEXT: INC R0
+001C DAEA             28     DJNZ R2, BACK
+                      29     
+001E EB               30     MOV A, R3
+                      31     
+                      32     END
+A51 MACRO ASSEMBLER  SRC_6                                                                08/18/2026 13:20:52 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   0008H   A   
+BEGIN. . . . . . .  C ADDR   0000H   A   
+NEXT . . . . . . .  C ADDR   001BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

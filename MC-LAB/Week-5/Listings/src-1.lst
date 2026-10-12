@@ -1,0 +1,115 @@
+A51 MACRO ASSEMBLER  SRC_1                                                                09/08/2026 23:52:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-1.asm SET(SMALL) DEBUG PRINT(.\Listings\src-1.lst) OBJECT(.\Objects
+                      \src-1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+0000 020030            2     LJMP MAIN
+001B                   3     ORG 001BH  
+001B 020074            4     LJMP ISR_T1
+0030                   5     ORG 0030H
+                       6     
+0030 758920            7     MAIN: MOV TMOD, #20H  
+0033 758D48            8     MOV TH1,  #48H  
+0036 758B38            9     MOV TL1,  #38H  
+0039 7801             10     MOV R0,   #01H  
+003B C200             11     CLR 20H.0
+003D 75A888           12     MOV IE, #88H  
+0040 D28E             13     SETB TR1  
+                      14     
+0042 E8               15     AGAIN: MOV A, R0
+0043 F580             16     MOV P0, A  
+0045 1156             17     ACALL DELAY50U
+                      18     
+0047 300004           19     JNB 20H.0, SKIP  
+004A 115B             20     ACALL DOWNCOUNT   
+004C C200             21     CLR 20H.0
+004E 08               22     SKIP: INC R0
+004F B831F0           23     CJNE R0, #31H, AGAIN  
+0052 7801             24     MOV R0, #01H
+0054 80EC             25     SJMP AGAIN
+                      26     
+                      27     
+                      28     
+0056                  29     DELAY50U:  
+0056 7F16             30     MOV R7, #22
+0058 DFFE             31     D50: DJNZ R7, D50
+005A 22               32     RET
+                      33     
+                      34     
+                      35     
+005B                  36     DOWNCOUNT:  
+005B E531             37     MOV A, 31H
+005D F590             38     DLOOP: MOV P1, A  
+005F 1167             39     ACALL DELAY1SEC
+0061 6003             40     JZ DDONE
+0063 14               41     DEC A
+0064 80F7             42     SJMP DLOOP
+0066 22               43     DDONE: RET
+                      44     
+                      45     
+                      46     
+0067                  47     DELAY1SEC:  
+0067 7D0A             48     MOV R5, #10
+0069 7EC8             49     D1: MOV R6, #200
+006B 7FFA             50     D2: MOV R7, #250
+006D DFFE             51     D3: DJNZ R7, D3
+006F DEFA             52     DJNZ R6, D2
+0071 DDF6             53     DJNZ R5, D1
+0073 22               54     RET
+                      55     
+                      56     
+                      57     
+A51 MACRO ASSEMBLER  SRC_1                                                                09/08/2026 23:52:18 PAGE     2
+
+0074                  58     ISR_T1:  
+0074 C0E0             59     PUSH ACC
+0076 C0D0             60     PUSH PSW
+0078 E8               61     MOV A, R0
+0079 F531             62     MOV 31H, A
+007B D200             63     SETB 20H.0
+007D D0D0             64     POP PSW
+007F D0E0             65     POP ACC
+0081 32               66     RETI
+                      67     END
+A51 MACRO ASSEMBLER  SRC_1                                                                09/08/2026 23:52:18 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+AGAIN. . . . . . .  C ADDR   0042H   A   
+D1 . . . . . . . .  C ADDR   0069H   A   
+D2 . . . . . . . .  C ADDR   006BH   A   
+D3 . . . . . . . .  C ADDR   006DH   A   
+D50. . . . . . . .  C ADDR   0058H   A   
+DDONE. . . . . . .  C ADDR   0066H   A   
+DELAY1SEC. . . . .  C ADDR   0067H   A   
+DELAY50U . . . . .  C ADDR   0056H   A   
+DLOOP. . . . . . .  C ADDR   005DH   A   
+DOWNCOUNT. . . . .  C ADDR   005BH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+ISR_T1 . . . . . .  C ADDR   0074H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+SKIP . . . . . . .  C ADDR   004EH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TL1. . . . . . . .  D ADDR   008BH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

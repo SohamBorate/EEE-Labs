@@ -1,0 +1,150 @@
+A51 MACRO ASSEMBLER  SRC_2                                                                10/05/2026 23:07:51 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-2.asm SET(SMALL) DEBUG PRINT(.\Listings\src-2.lst) OBJECT(.\Objects
+                      \src-2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  E267                 1     LCDINIT EQU 0E267H
+  E295                 2     LCDCMD EQU 0E295H
+  E2B4                 3     LCDDAT EQU 0E2B4H
+  E39E                 4     LCDSTR EQU 0E39EH
+  03B0                 5     HEX2ASCII EQU 03B0H
+                       6     
+  0090                 7     CHANNELS EQU P1
+  0080                 8     INPUT EQU P0
+                       9     
+0000                  10     ORG 0000H
+                      11     
+0000 12E267           12     LCALL LCDINIT
+0003 7406             13     MOV A, #06H  
+0005 12E295           14     LCALL LCDCMD
+                      15     
+0008 74C0             16     MOV A, #0C0H  
+000A 12E295           17     LCALL LCDCMD
+000D 900310           18     MOV DPTR, #TEXT
+0010 12E39E           19     LCALL LCDSTR
+                      20     
+0013 7580FF           21     UP1: MOV INPUT, #0FFH
+0016 759000           22     MOV CHANNELS, #00H
+0019 E580             23     MOV A, INPUT
+001B 540F             24     ANL A, #0FH
+001D B40FF3           25     CJNE A, #0FH, UP1
+                      26     
+0020 118A             27     UP2: ACALL DBDELAY
+0022 E580             28     MOV A, INPUT
+0024 540F             29     ANL A, #0FH
+0026 B40F02           30     CJNE A, #0FH, PRESS
+0029 80F5             31     SJMP UP2
+                      32     
+002B 118A             33     PRESS: ACALL DBDELAY
+002D E580             34     MOV A, INPUT
+002F 540F             35     ANL A, #0FH
+0031 B40F02           36     CJNE A, #0FH, DETECT
+0034 80EA             37     SJMP UP2
+                      38     
+0036 7590FE           39     DETECT: MOV P1, #11111110B
+0039 E580             40     MOV A, INPUT
+003B 540F             41     ANL A, #0FH
+003D B40F21           42     CJNE A, #0FH, ROW0
+0040 7590FD           43     MOV P1, #11111101B
+0043 E580             44     MOV A, INPUT
+0045 540F             45     ANL A, #0FH
+0047 B40F1C           46     CJNE A, #0FH, ROW1
+004A 7590FB           47     MOV P1, #11111011B
+004D E580             48     MOV A, INPUT
+004F 540F             49     ANL A, #0FH
+0051 B40F17           50     CJNE A, #0FH, ROW2
+0054 7590F7           51     MOV P1, #11110111B
+0057 E580             52     MOV A, INPUT
+0059 540F             53     ANL A, #0FH
+005B B40F12           54     CJNE A, #0FH, ROW3
+005E 020020           55     LJMP UP2
+                      56     
+0061 900300           57     ROW0: MOV DPTR, #CODE0
+A51 MACRO ASSEMBLER  SRC_2                                                                10/05/2026 23:07:51 PAGE     2
+
+0064 800D             58     SJMP FIND
+0066 900304           59     ROW1: MOV DPTR, #CODE1
+0069 8008             60     SJMP FIND
+006B 900308           61     ROW2: MOV DPTR, #CODE2
+006E 8003             62     SJMP FIND
+0070 90030C           63     ROW3: MOV DPTR, #CODE3
+                      64     
+0073 13               65     FIND: RRC A
+0074 5003             66     JNC MATCH
+0076 A3               67     INC DPTR
+0077 80FA             68     SJMP FIND
+                      69     
+0079 E4               70     MATCH: CLR A
+007A 93               71     MOVC A, @A+DPTR
+007B F530             72     MOV 30H, A
+007D 74CE             73     MOV A, #0CEH  
+007F 12E295           74     LCALL LCDCMD
+0082 E530             75     MOV A, 30H  
+0084 12E2B4           76     LCALL LCDDAT
+0087 020013           77     LJMP UP1
+                      78     
+008A 7F24             79     DBDELAY: MOV R7, #024H  
+008C 7EFF             80     D1: MOV R6, #0FFH
+008E DEFE             81     D2: DJNZ R6,D2
+0090 DFFA             82     DJNZ R7, D1
+0092 22               83     RET
+                      84     
+0300                  85     ORG 0300H
+                      86     
+0300 30313233         87     CODE0: DB '0', '1', '2', '3'
+0304 34353637         88     CODE1: DB '4', '5', '6', '7'
+0308 38394142         89     CODE2: DB '8', '9', 'A', 'B'
+030C 43444546         90     CODE3: DB 'C', 'D', 'E', 'F'
+                      91     
+0310 4B455920         92     TEXT: DB 'KEY PRESSED = ', 0  
+0314 50524553                
+0318 53454420                
+031C 3D2000                  
+                      93     
+                      94     END
+A51 MACRO ASSEMBLER  SRC_2                                                                10/05/2026 23:07:51 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CHANNELS . . . . .  D ADDR   0090H   A   
+CODE0. . . . . . .  C ADDR   0300H   A   
+CODE1. . . . . . .  C ADDR   0304H   A   
+CODE2. . . . . . .  C ADDR   0308H   A   
+CODE3. . . . . . .  C ADDR   030CH   A   
+D1 . . . . . . . .  C ADDR   008CH   A   
+D2 . . . . . . . .  C ADDR   008EH   A   
+DBDELAY. . . . . .  C ADDR   008AH   A   
+DETECT . . . . . .  C ADDR   0036H   A   
+FIND . . . . . . .  C ADDR   0073H   A   
+HEX2ASCII. . . . .  N NUMB   03B0H   A   
+INPUT. . . . . . .  D ADDR   0080H   A   
+LCDCMD . . . . . .  N NUMB   E295H   A   
+LCDDAT . . . . . .  N NUMB   E2B4H   A   
+LCDINIT. . . . . .  N NUMB   E267H   A   
+LCDSTR . . . . . .  N NUMB   E39EH   A   
+MATCH. . . . . . .  C ADDR   0079H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+PRESS. . . . . . .  C ADDR   002BH   A   
+ROW0 . . . . . . .  C ADDR   0061H   A   
+ROW1 . . . . . . .  C ADDR   0066H   A   
+ROW2 . . . . . . .  C ADDR   006BH   A   
+ROW3 . . . . . . .  C ADDR   0070H   A   
+TEXT . . . . . . .  C ADDR   0310H   A   
+UP1. . . . . . . .  C ADDR   0013H   A   
+UP2. . . . . . . .  C ADDR   0020H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

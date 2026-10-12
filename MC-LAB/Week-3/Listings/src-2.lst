@@ -1,0 +1,67 @@
+A51 MACRO ASSEMBLER  SRC_2                                                                08/24/2026 20:45:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-2.asm SET(SMALL) DEBUG PRINT(.\Listings\src-2.lst) OBJECT(.\Objects
+                      \src-2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7A05              3     START: MOV R2, #5
+0002 7855              4     MOV R0, #55H
+                       5     
+0004 E6                6     BACK:MOV A, @R0
+                       7     
+0005 FB                8             MOV R3, A        ; save original packed BCD (need it again for units digit)
+0006 54F0              9             ANL A, #0F0H     ; isolate upper nibble (tens digit, still shifted left)
+0008 C4               10             SWAP A           ; shift down: e.g. 70H -> 07H
+0009 75F00A           11             MOV B, #0AH
+000C A4               12             MUL AB           ; A = tens_digit * 10
+000D FC               13             MOV R4, A        ; stash this partial result
+000E EB               14             MOV A, R3        ; reload original packed byte
+000F 540F             15             ANL A, #0FH      ; isolate lower nibble = units digit
+0011 2C               16             ADD A, R4        ; A = (tens*10) + units = hex equivalent
+0012 F590             17     MOV P1, A
+0014 08               18     INC R0
+0015 111B             19     ACALL DELAY
+0017 DAEB             20     DJNZ R2, BACK
+                      21     
+0019 800D             22     SJMP SKIPDELAY  
+                      23     
+001B 7F08             24     DELAY: MOV R7, #8  
+001D 7EE1             25     LOOP1: MOV R6, #225  
+001F 7DFF             26     LOOP2: MOV R5, #255  
+0021 DDFE             27     LOOP3: DJNZ R5, LOOP3
+0023 DEFA             28     DJNZ R6, LOOP2
+0025 DFF6             29     DJNZ R7, LOOP1
+0027 22               30     RET
+                      31     
+0028                  32     SKIPDELAY:
+                      33     
+                      34     END
+A51 MACRO ASSEMBLER  SRC_2                                                                08/24/2026 20:45:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   0004H   A   
+DELAY. . . . . . .  C ADDR   001BH   A   
+LOOP1. . . . . . .  C ADDR   001DH   A   
+LOOP2. . . . . . .  C ADDR   001FH   A   
+LOOP3. . . . . . .  C ADDR   0021H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+SKIPDELAY. . . . .  C ADDR   0028H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    09/21/2026  23:52:29  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\src-4.obj TO .\Objects\Week-6 PRINT (.\Listings\Week-6.m51) RAMSIZE (256) CODE (0X
+>> 0000-0XFFFF) XDATA (0X0000-0X06FF)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\src-4.obj (SRC_4)
+
+
+LINK MAP OF MODULE:  .\Objects\Week-6 (SRC_4)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0094H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Week-6 (SRC_4)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SRC_4
+  C:0072H         SYMBOL        BUSY
+  C:0060H         SYMBOL        CMD
+  C:0069H         SYMBOL        DAT
+  C:005FH         SYMBOL        DONE
+  B:00A0H.2       SYMBOL        EN
+  C:0054H         SYMBOL        HERE
+  D:0090H         SYMBOL        LCD_DATA
+  C:0032H         SYMBOL        MAIN
+  D:0090H         SYMBOL        P1
+  D:00A0H         SYMBOL        P2
+  C:0056H         SYMBOL        PRINT
+  B:00A0H.0       SYMBOL        RS
+  B:00A0H.1       SYMBOL        RW
+  C:007BH         SYMBOL        TEXT1
+  C:008BH         SYMBOL        TEXT2
+  C:0000H         LINE#         2
+  C:0030H         LINE#         10
+  C:0032H         LINE#         12
+  C:0034H         LINE#         13
+  C:0036H         LINE#         14
+  C:0038H         LINE#         15
+  C:003AH         LINE#         16
+  C:003CH         LINE#         17
+  C:003EH         LINE#         18
+  C:0040H         LINE#         19
+  C:0042H         LINE#         21
+  C:0044H         LINE#         22
+  C:0046H         LINE#         23
+  C:0049H         LINE#         24
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  09/21/2026  23:52:29  PAGE 2
+
+
+  C:004BH         LINE#         26
+  C:004DH         LINE#         27
+  C:004FH         LINE#         28
+  C:0052H         LINE#         29
+  C:0054H         LINE#         31
+  C:0056H         LINE#         34
+  C:0057H         LINE#         35
+  C:0058H         LINE#         36
+  C:005AH         LINE#         37
+  C:005CH         LINE#         38
+  C:005DH         LINE#         39
+  C:005FH         LINE#         40
+  C:0060H         LINE#         43
+  C:0062H         LINE#         44
+  C:0064H         LINE#         45
+  C:0066H         LINE#         46
+  C:0068H         LINE#         47
+  C:0069H         LINE#         50
+  C:006BH         LINE#         51
+  C:006DH         LINE#         52
+  C:006FH         LINE#         53
+  C:0071H         LINE#         54
+  C:0072H         LINE#         57
+  C:0074H         LINE#         58
+  C:0075H         LINE#         59
+  C:0077H         LINE#         60
+  C:007AH         LINE#         61
+  -------         ENDMOD        SRC_4
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0067H BYTE ( 5%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=148
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

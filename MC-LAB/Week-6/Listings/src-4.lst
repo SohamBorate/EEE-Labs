@@ -1,0 +1,112 @@
+A51 MACRO ASSEMBLER  SRC_4                                                                09/21/2026 23:52:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-4.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-4.asm SET(SMALL) DEBUG PRINT(.\Listings\src-4.lst) OBJECT(.\Objects
+                      \src-4.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+0000 020032            2     LJMP MAIN
+                       3     
+  0090                 4     LCD_DATA EQU P1
+  00A0                 5     RS BIT P2.0
+  00A1                 6     RW BIT P2.1
+  00A2                 7     EN BIT P2.2
+                       8     
+0030                   9     ORG 0030H
+0030 1172             10     ACALL BUSY
+                      11     
+0032 7438             12     MAIN:   MOV A, #38H  
+0034 1160             13     ACALL CMD
+0036 740C             14     MOV A, #0CH  
+0038 1160             15     ACALL CMD
+003A 7406             16     MOV A, #06H  
+003C 1160             17     ACALL CMD
+003E 7401             18     MOV A, #01H  
+0040 1160             19     ACALL CMD
+                      20     
+0042 7481             21     MOV A, #81H  
+0044 1160             22     ACALL CMD
+0046 90007B           23     MOV DPTR, #TEXT1
+0049 1156             24     ACALL PRINT
+                      25     
+004B 74C4             26     MOV A, #0C4H  
+004D 1160             27     ACALL CMD
+004F 90008B           28     MOV DPTR, #TEXT2
+0052 1156             29     ACALL PRINT
+                      30     
+0054 80FE             31     HERE: SJMP HERE
+                      32     
+                      33     
+0056 E4               34     PRINT: CLR A
+0057 93               35     MOVC A, @A+DPTR
+0058 6005             36     JZ DONE
+005A 1169             37     ACALL DAT
+005C A3               38     INC DPTR
+005D 80F7             39     SJMP PRINT
+005F 22               40     DONE: RET
+                      41     
+                      42     
+0060 C2A0             43     CMD: CLR RS
+0062 C2A1             44     CLR RW
+0064 F590             45     MOV LCD_DATA, A
+0066 1172             46     ACALL BUSY
+0068 22               47     RET
+                      48     
+                      49     
+0069 D2A0             50     DAT: SETB RS
+006B C2A1             51     CLR RW
+006D F590             52     MOV LCD_DATA, A
+006F 1172             53     ACALL BUSY
+0071 22               54     RET
+                      55     
+                      56     
+0072 C2A2             57     BUSY: CLR EN
+A51 MACRO ASSEMBLER  SRC_4                                                                09/21/2026 23:52:29 PAGE     2
+
+0074 00               58     NOP
+0075 D2A2             59     SETB EN
+0077 2097F8           60     JB LCD_DATA.7, BUSY
+007A 22               61     RET
+                      62     
+007B 4D494352         63     TEXT1: DB 'MICROCONTROLLER', 0
+007F 4F434F4E                
+0083 54524F4C                
+0087 4C455200                
+008B 4C414220         64     TEXT2: DB 'LAB 2026', 0
+008F 32303236                
+0093 00                      
+                      65     
+                      66     END
+A51 MACRO ASSEMBLER  SRC_4                                                                09/21/2026 23:52:29 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BUSY . . . . . . .  C ADDR   0072H   A   
+CMD. . . . . . . .  C ADDR   0060H   A   
+DAT. . . . . . . .  C ADDR   0069H   A   
+DONE . . . . . . .  C ADDR   005FH   A   
+EN . . . . . . . .  B ADDR   00A0H.2 A   
+HERE . . . . . . .  C ADDR   0054H   A   
+LCD_DATA . . . . .  D ADDR   0090H   A   
+MAIN . . . . . . .  C ADDR   0032H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PRINT. . . . . . .  C ADDR   0056H   A   
+RS . . . . . . . .  B ADDR   00A0H.0 A   
+RW . . . . . . . .  B ADDR   00A0H.1 A   
+TEXT1. . . . . . .  C ADDR   007BH   A   
+TEXT2. . . . . . .  C ADDR   008BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

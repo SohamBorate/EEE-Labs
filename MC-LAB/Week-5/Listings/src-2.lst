@@ -1,0 +1,83 @@
+A51 MACRO ASSEMBLER  SRC_2                                                                09/08/2026 13:10:12 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-2.asm SET(SMALL) DEBUG PRINT(.\Listings\src-2.lst) OBJECT(.\Objects
+                      \src-2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                 ORG     0000H
+0000 020030            2                 LJMP    MAIN
+                       3     
+0003                   4                 ORG     0003H          ; External Interrupt 0 vector
+0003 02005B            5                 LJMP    ISR_INT0
+                       6     
+0030                   7                 ORG     0030H
+0030 753000            8     MAIN:       MOV     30H, #00H      ; init flag byte at address 30H: 0=run, nonzero=stop
+0033 C292              9                 CLR     P1.2
+0035 D288             10                 SETB    IT0            ; INT0 = edge-triggered (falling edge)
+0037 D2A8             11                 SETB    EX0            ; enable external interrupt 0
+0039 D2AF             12                 SETB    EA             ; global interrupt enable
+                      13     
+003B E530             14     AGAIN:      MOV     A, 30H
+003D 700E             15                 JNZ     HALT
+003F D292             16                 SETB    P1.2           ; HIGH phase (30% of period)
+0041 1151             17                 ACALL   DEL150U
+0043 E530             18                 MOV     A, 30H
+0045 7006             19                 JNZ     HALT
+0047 C292             20                 CLR     P1.2           ; LOW phase (70% of period)
+0049 1156             21                 ACALL   DEL350U
+004B 80EE             22                 SJMP    AGAIN
+                      23     
+004D C292             24     HALT:       CLR     P1.2           ; leave pin in a defined LOW state
+004F 80FC             25                 SJMP    HALT           ; waveform generation halted permanently
+                      26     
+                      27     ;--------------------------------------------------
+0051 7F4A             28     DEL150U:    MOV     R7, #74
+0053 DFFE             29     D150:       DJNZ    R7, D150
+0055 22               30                 RET
+                      31     
+                      32     ;--------------------------------------------------
+0056 7FAE             33     DEL350U:    MOV     R7, #174
+0058 DFFE             34     D350:       DJNZ    R7, D350
+005A 22               35                 RET
+                      36     
+                      37     ;--------------------------------------------------
+005B C0E0             38     ISR_INT0:   PUSH    ACC
+005D C0D0             39                 PUSH    PSW
+005F 753001           40                 MOV     30H, #01H      ; write stop signal directly to address 30H
+0062 D0D0             41                 POP     PSW
+0064 D0E0             42                 POP     ACC
+0066 32               43                 RETI
+                      44     
+                      45                 END
+A51 MACRO ASSEMBLER  SRC_2                                                                09/08/2026 13:10:12 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+AGAIN. . . . . . .  C ADDR   003BH   A   
+D150 . . . . . . .  C ADDR   0053H   A   
+D350 . . . . . . .  C ADDR   0058H   A   
+DEL150U. . . . . .  C ADDR   0051H   A   
+DEL350U. . . . . .  C ADDR   0056H   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+EX0. . . . . . . .  B ADDR   00A8H.0 A   
+HALT . . . . . . .  C ADDR   004DH   A   
+ISR_INT0 . . . . .  C ADDR   005BH   A   
+IT0. . . . . . . .  B ADDR   0088H.0 A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

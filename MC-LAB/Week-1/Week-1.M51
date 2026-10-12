@@ -1,0 +1,42 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    08/17/2026  20:24:34  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE src-5-b.obj TO Week-1 RAMSIZE (256) CODE (0X0000-0XFFFF)
+
+
+INPUT MODULES INCLUDED:
+  src-5-b.obj (SRC_5_B)
+
+
+LINK MAP OF MODULE:  Week-1 (SRC_5_B)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  Week-1 (SRC_5_B)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SRC_5_B
+  C:0000H         LINE#         3
+  C:0001H         LINE#         4
+  C:0002H         LINE#         5
+  -------         ENDMOD        SRC_5_B
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0003H BYTE ( 0%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=3
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

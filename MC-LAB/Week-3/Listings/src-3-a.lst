@@ -1,0 +1,50 @@
+A51 MACRO ASSEMBLER  SRC_3_A                                                              08/24/2026 22:10:23 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-3-a.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-3-a.asm SET(SMALL) DEBUG PRINT(.\Listings\src-3-a.lst) OBJECT(.\Obj
+                      ects\src-3-a.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 E550              3     START: MOV A, 50H  
+0002 54F0              4     ANL A, #0F0H  
+0004 C4                5     SWAP A  
+0005 900017            6     MOV DPTR, #TABLE  
+0008 93                7     MOVC A, @A+DPTR  
+0009 F580              8     MOV P0, A  
+000B E550              9     MOV A, 50H  
+000D 540F             10     ANL A, #0FH  
+000F 900017           11     MOV DPTR, #TABLE  
+0012 93               12     MOVC A, @A+DPTR  
+0013 F590             13     MOV P1, A  
+                      14     
+0015 80FE             15     SJMP $  
+                      16     
+0017 30313233         17     TABLE: DB 30H,31H,32H,33H,34H,35H,36H,37H  
+001B 34353637                
+001F 38394142         18     DB 38H,39H,41H,42H,43H,44H,45H,46H  
+0023 43444546                
+                      19     
+                      20     END
+A51 MACRO ASSEMBLER  SRC_3_A                                                              08/24/2026 22:10:23 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START. . . . . . .  C ADDR   0000H   A   
+TABLE. . . . . . .  C ADDR   0017H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

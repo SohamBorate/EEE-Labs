@@ -1,0 +1,55 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    08/24/2026  22:10:23  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\src-3-a.obj TO .\Objects\Week-3 PRINT (.\Listings\Week-3.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\src-3-a.obj (SRC_3_A)
+
+
+LINK MAP OF MODULE:  .\Objects\Week-3 (SRC_3_A)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0027H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Week-3 (SRC_3_A)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SRC_3_A
+  D:0080H         SYMBOL        P0
+  D:0090H         SYMBOL        P1
+  C:0000H         SYMBOL        START
+  C:0017H         SYMBOL        TABLE
+  C:0000H         LINE#         3
+  C:0002H         LINE#         4
+  C:0004H         LINE#         5
+  C:0005H         LINE#         6
+  C:0008H         LINE#         7
+  C:0009H         LINE#         8
+  C:000BH         LINE#         9
+  C:000DH         LINE#         10
+  C:000FH         LINE#         11
+  C:0012H         LINE#         12
+  C:0013H         LINE#         13
+  C:0015H         LINE#         15
+  -------         ENDMOD        SRC_3_A
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0027H BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=39
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

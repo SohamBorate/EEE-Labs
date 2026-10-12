@@ -1,0 +1,51 @@
+A51 MACRO ASSEMBLER  SRC_3                                                                08/17/2026 23:09:41 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-3.asm SET(SMALL) DEBUG PRINT(.\Listings\src-3.lst) OBJECT(.\Objects
+                      \src-3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+                       3     
+                       4     
+                       5     
+                       6     
+                       7     
+0000 7A04              8     MOV R2, #4  
+0002 7820              9     MOV R0, #20H  
+0004 7930             10     MOV R1, #30H  
+0006 7B40             11     MOV R3, #40H  
+                      12     
+0008 E6               13     BACK: MOV A, @R0
+0009 C3               14     CLR C
+000A 97               15     SUBB A, @R1
+000B C000             16     PUSH 00H  
+000D 850300           17     MOV 00H, 03H  
+0010 F6               18     MOV @R0, A  
+0011 08               19     INC R0  
+0012 850003           20     MOV 03H, 00H  
+0015 D000             21     POP 00H  
+0017 08               22     INC R0  
+0018 09               23     INC R1  
+0019 DAED             24     DJNZ R2, BACK
+                      25     
+                      26     END
+A51 MACRO ASSEMBLER  SRC_3                                                                08/17/2026 23:09:41 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0008H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,39 @@
+A51 MACRO ASSEMBLER  SRC_4                                                                08/17/2026 19:51:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN src-4.OBJ
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-4.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7A05              3     START: MOV R2, #5  
+0002 7820              4     MOV R0, #20H  
+0004 902000            5     MOV DPTR, #2000H  
+                       6     
+0007 E0                7     BACK: MOVX A, @DPTR
+0008 C6                8     XCH A, @R0
+0009 F0                9     MOVX @DPTR, A
+000A A3               10     INC DPTR
+000B 08               11     INC R0
+000C DAF9             12     DJNZ R2, BACK
+                      13     
+                      14     END
+A51 MACRO ASSEMBLER  SRC_4                                                                08/17/2026 19:51:22 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0007H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

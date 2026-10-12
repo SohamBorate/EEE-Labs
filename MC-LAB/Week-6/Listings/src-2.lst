@@ -1,0 +1,117 @@
+A51 MACRO ASSEMBLER  SRC_2                                                                09/21/2026 22:08:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\src-2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE src-2.asm SET(SMALL) DEBUG PRINT(.\Listings\src-2.lst) OBJECT(.\Objects
+                      \src-2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+                       2     
+0000 7C80              3     MOV R4, #80H  
+                       4     
+0002 7A10              5     REPEAT: MOV R2, #16
+0004 7B00              6     MOV R3, #00
+0006 90004D            7     MOV DPTR, #SINEUPHALF
+                       8     
+                       9     
+                      10     
+0009 EB               11     LOOP1: MOV A, R3
+000A 93               12     MOVC A, @A+DPTR
+000B 2C               13     ADD A, R4
+000C F590             14     MOV P1, A
+000E 0B               15     INC R3
+000F 1148             16     ACALL DELAY
+0011 DAF6             17     DJNZ R2, LOOP1
+                      18     
+                      19     
+                      20     
+0013 1B               21     DEC R3
+0014 1B               22     DEC R3
+0015 7A0F             23     MOV R2, #15
+                      24     
+0017 EB               25     LOOP2: MOV A, R3
+0018 93               26     MOVC A, @A+DPTR
+0019 2C               27     ADD A, R4
+001A F590             28     MOV P1, A
+001C 1B               29     DEC R3
+001D 1148             30     ACALL DELAY
+001F DAF6             31     DJNZ R2, LOOP2
+                      32     
+                      33     
+                      34     
+0021 7A10             35     MOV R2, #16
+0023 7B00             36     MOV R3, #00
+0025 90004D           37     MOV DPTR, #SINEUPHALF
+                      38     
+                      39     
+                      40     
+0028 EB               41     LOOP3: MOV A, R3
+0029 93               42     MOVC A, @A+DPTR
+002A C3               43     CLR C
+002B FD               44     MOV R5, A
+002C EC               45     MOV A, R4
+002D 9D               46     SUBB A, R5
+002E F590             47     MOV P1, A
+0030 0B               48     INC R3
+0031 1148             49     ACALL DELAY
+0033 DAF3             50     DJNZ R2, LOOP3
+                      51     
+                      52     
+                      53     
+0035 1B               54     DEC R3
+0036 1B               55     DEC R3
+0037 7A0F             56     MOV R2, #15
+                      57     
+A51 MACRO ASSEMBLER  SRC_2                                                                09/21/2026 22:08:22 PAGE     2
+
+0039 EB               58     LOOP4: MOV A, R3
+003A 93               59     MOVC A, @A+DPTR
+003B C3               60     CLR C
+003C FD               61     MOV R5, A
+003D EC               62     MOV A, R4
+003E 9D               63     SUBB A, R5
+003F F590             64     MOV P1, A
+0041 1B               65     DEC R3
+0042 1148             66     ACALL DELAY
+0044 DAF3             67     DJNZ R2, LOOP4
+                      68     
+0046 80BA             69     SJMP REPEAT
+                      70     
+0048 7F32             71     DELAY: MOV R7, #50
+004A DFFE             72     LOOPDELAY: DJNZ R7, LOOPDELAY
+004C 22               73     RET
+                      74     
+                      75     
+004D 000D1A27         76     SINEUPHALF: DB 00H, 0DH, 1AH, 27H, 34H, 3FH, 4BH, 55H, 5FH, 67H, 6EH, 74H, 79H, 7CH, 7EH, 7
+                             FH
+0051 343F4B55                
+0055 5F676E74                
+0059 797C7E7F                
+                      77     
+                      78     END
+A51 MACRO ASSEMBLER  SRC_2                                                                09/21/2026 22:08:22 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0048H   A   
+LOOP1. . . . . . .  C ADDR   0009H   A   
+LOOP2. . . . . . .  C ADDR   0017H   A   
+LOOP3. . . . . . .  C ADDR   0028H   A   
+LOOP4. . . . . . .  C ADDR   0039H   A   
+LOOPDELAY. . . . .  C ADDR   004AH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REPEAT . . . . . .  C ADDR   0002H   A   
+SINEUPHALF . . . .  C ADDR   004DH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
