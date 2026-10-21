@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  TEST                                                                 09/15/2026 22:42:32 PAGE     1
+A51 MACRO ASSEMBLER  TEST                                                                 10/21/2026 06:43:17 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
@@ -23,7 +23,7 @@ LOC  OBJ            LINE     SOURCE
 0012 22               13     RET
                       14     
                       15     END
-A51 MACRO ASSEMBLER  TEST                                                                 09/15/2026 22:42:32 PAGE     2
+A51 MACRO ASSEMBLER  TEST                                                                 10/21/2026 06:43:17 PAGE     2
 
 SYMBOL TABLE LISTING
 ------ ----- -------
