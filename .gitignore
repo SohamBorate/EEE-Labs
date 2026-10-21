@@ -1,3 +1,4 @@
 *.zip
 ./MC-LAB/*/Objects/*
 ./MC-LAB/*/Listings/*
+./DSD-LAB/Nexys-4-DDR-XADC-Demo
